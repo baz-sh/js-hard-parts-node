@@ -38,4 +38,40 @@ It's a language that does 3 things (and 1 involved a lot of help from C++)
 
 ## Executing JavaScript Code Review
 
+**Let's see the 2 things that JS does by itself-saving and using data.**
+
+JavaScript saves data in memory, _global memory_.
+
+```js
+let num = 3;
+// 1. Save a function (code to run, parameters awaiting inputs)
+function multiplyBy2(intputNumber) {
+    const result = inputNumber*2;
+    return result;
+}
+// 2a. Call/run/invoke/execute a function (with parens)
+//.. and 2b. insert an input (an argument)
+const output = multiplyBy2(num);
+const newOutput = multiplyBy2(10);
+```
+
 ## Executing Node Code
+
+**So let's see JavaScript's other talent - built-in labels that trigger Node features.**
+
+We can set up, with a JavaScript label, a Node.js feature (and so computer internals) to wait for requests for html/css/js/tweets from our users.
+
+How? The most powerful build-in Node feature of all: `http` (and its assocuated built-in label in JS - also `http` conveniently).
+
+### Using http feature of Node to set up an open socket
+
+```js
+const server = http.createServer();
+server.listen(80);
+```
+
+Inbound web request -> run code to send back message
+
+```if inbound message -> send back data```
+
+But at what moment? 🥴
