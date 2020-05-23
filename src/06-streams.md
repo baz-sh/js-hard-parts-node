@@ -53,4 +53,11 @@ This is what's known as **_the event loop_**.
 
 ![stream-processing](/img/06-streams-1.png)
 
-## Node Streams Q&A
+We can breakdown any inbound data into chunk and on each chunk, run a function on it.
+
+When a stream finishes chunking and emitting it's data, it emits an event `close`.
+
+```js
+let finish = () => console.log('finish!');
+accessTweetsArchive.on('close', finish);
+```

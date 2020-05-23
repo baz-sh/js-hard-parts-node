@@ -1,14 +1,35 @@
 var fs = require('fs');
 
-function cleanTweets(tweets) {
-    console.log(`cleaning... ${tweets}`);
-    return tweets;
+//********
+// Reading a file
+
+// function cleanTweets(tweets) {
+//     console.log(`cleaning... ${tweets}`);
+//     return tweets;
+// }
+
+// function useImportedTweets(errorData, data) {
+//     const cleanedTweetsJson = cleanTweets(data);
+//     const tweetsObj = JSON.parse(cleanedTweetsJson);
+//     console.log(tweetsObj.tweets[3]);
+// }
+
+// fs.readFile('./tweets.json',useImportedTweets)
+
+//********
+// Using a stream
+let cleanedTweets = "";
+function cleanTweets(tweetsToClean) {
+    //algorithm to remove "bad" words from tweets
+    return tweetsToClean;
+}
+function doOnNewBatch(data) {
+    cleanedTweets += cleanTweets(data);
+    console.log(cleanedTweets);
 }
 
-function useImportedTweets(errorData, data) {
-    const cleanedTweetsJson = cleanTweets(data);
-    const tweetsObj = JSON.parse(cleanedTweetsJson);
-    console.log(tweetsObj.tweets[3]);
-}
+let finish = () => console.log("finished!");
 
-fs.readFile('./tweets.json',useImportedTweets)
+const accessTweetsArchive = fs.createReadStream('./tweets.json')
+accessTweetsArchive.on('data', doOnNewBatch);
+accessTweetsArchive.on('close', finish);
